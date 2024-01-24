@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## UI
 
-<img src="https://github.com/yahoogm/pijarcamp/issues/1#issue-2098381931"/>
+Landing
+<img src="https://github.com/yahoogm/pijarcamp/issues/2#issue-2098388919"/>
+
+Add
+<img src="https://github.com/yahoogm/pijarcamp/issues/3#issue-2098389352"/>
+
+Edit
+<img src="https://github.com/yahoogm/pijarcamp/issues/4#issue-2098390311"/>
 
 ## Getting Started
 
