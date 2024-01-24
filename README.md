@@ -3,13 +3,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## UI
 
 Landing
-<img src="https://github.com/yahoogm/pijarcamp/issues/2#issue-2098388919"/>
+<img src="./public/add.png"/>
 
 Add
-<img src="https://github.com/yahoogm/pijarcamp/issues/3#issue-2098389352"/>
+<img src="./public/add_product.png"/>
 
 Edit
-<img src="https://github.com/yahoogm/pijarcamp/issues/4#issue-2098390311"/>
+<img src="./public//edit.png"/>
 
 ## Getting Started
 
