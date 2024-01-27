@@ -1,5 +1,5 @@
 import connectToMongoDB from '@/libs/mongodb';
-import products from '@/models/product';
+import products from '@/database/models/product';
 import { Params } from '@/utils/product';
 import { NextRequest, NextResponse } from 'next/server';
 

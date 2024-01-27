@@ -2,7 +2,7 @@
 
 import { useFetch } from '@/hooks/useFetch';
 import { HiTrash, HiPencil } from 'react-icons/hi';
-import { ProductData } from '@/utils/product';
+import { ProductData, formatNumber, formatToRupiah } from '@/utils/product';
 import {
   Table,
   Thead,
@@ -12,24 +12,28 @@ import {
   Td,
   TableContainer,
   Flex,
-  Center,
   HStack,
   Button,
   useToast,
+  Container,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import LoadingTable from '@/components/common/LoadingTable';
+import ErrorTable from '@/components/common/ErrorTable';
 
 export default function Home() {
+  const toast = useToast();
+  const router = useRouter();
+
   const {
     data: products,
     error,
     loading,
   } = useFetch(`${process.env.API_URL}/product`);
 
-  const toast = useToast();
-  const router = useRouter();
+  if (error) return <ErrorTable />;
+  if (loading) return <LoadingTable />;
 
   const handleDeleteProduct = async (id: string) => {
     try {
@@ -51,32 +55,41 @@ export default function Home() {
       window.location.reload();
     } catch (error) {}
   };
+
   return (
-    <main>
-      <Link href={'/product'}>
-        <Button backgroundColor={'darkblue'} color={'white'}>
-          Tambah produk
-        </Button>
-      </Link>
+    <Container
+      maxW={'7xl'}
+      mt={'20'}
+      backgroundColor={'#43766C'}
+      py={'6'}
+      borderRadius={'md'}
+    >
+      <Flex alignItems={'end'}>
+        <a href={'/product'}>
+          <Button backgroundColor={'#F8FAE5'}>Tambah produk</Button>
+        </a>
+      </Flex>
       <TableContainer>
-        <Table variant="simple">
+        <Table variant="simple" size={'md'}>
           <Thead>
             <Tr>
-              <Th>Nama Produk</Th>
-              <Th>Deskripsi</Th>
-              <Th>Harga</Th>
-              <Th>Jumlah</Th>
-              <Th>Aksi</Th>
+              <Th color={'#B19470'}>Nama Produk</Th>
+              <Th color={'#B19470'}>Deskripsi</Th>
+              <Th color={'#B19470'}>Harga</Th>
+              <Th color={'#B19470'}>Jumlah</Th>
+              <Th color={'#B19470'}>Aksi</Th>
             </Tr>
           </Thead>
           <Tbody>
             {products?.map((product: ProductData) => {
               return (
                 <Tr key={product._id}>
-                  <Td>{product.nama_produk}</Td>
-                  <Td>{product.keterangan}</Td>
-                  <Td>{product.harga}</Td>
-                  <Td>{product.jumlah}</Td>
+                  <Td color={'white'}>{product.nama_produk}</Td>
+                  <Td color={'white'}>{product.keterangan}</Td>
+                  <Td color={'white'}>{`Rp. ${formatToRupiah(
+                    product.harga
+                  )}`}</Td>
+                  <Td color={'white'}>{formatNumber(product.jumlah)}</Td>
                   <Td>
                     <HStack spacing={'10px'}>
                       <Button
@@ -97,6 +110,6 @@ export default function Home() {
           </Tbody>
         </Table>
       </TableContainer>
-    </main>
+    </Container>
   );
 }

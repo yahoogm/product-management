@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 export const useFetch = (initialUrl: string, options?: AxiosRequestConfig) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!initialUrl) return;
@@ -14,14 +14,16 @@ export const useFetch = (initialUrl: string, options?: AxiosRequestConfig) => {
       try {
         const response = await axios.get(initialUrl);
         if (response.status === 400 || response.status === 404) {
+          setError(true);
           throw new Error(`HTTP Error status: ${response.status}`);
         }
 
         const json = await response.data;
         setData(json);
         setLoading(false);
-        setError(null);
+        setError(false);
       } catch (error) {
+        setError(true);
         throw (error as Error).message;
       }
     };

@@ -1,5 +1,5 @@
 import connectToMongoDB from '@/libs/mongodb';
-import products from '@/models/product';
+import products from '@/database/models/product';
 import { NextRequest, NextResponse } from 'next/server';
 import { ProductData } from '@/utils/product';
 
@@ -7,6 +7,14 @@ export async function GET() {
   try {
     await connectToMongoDB();
     const product = await products.find();
+
+    if (product.length === 0) {
+      return NextResponse.json(
+        { error: 'No products found', message: 'No products found' },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(product, { status: 200 });
   } catch (error) {
     return NextResponse.json(
