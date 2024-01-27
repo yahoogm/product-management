@@ -12,30 +12,37 @@ import {
   Container,
   Skeleton,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 
 const LoadingTable = () => {
   return (
-    <Container
-      maxW={'7xl'}
-      mt={'20'}
-      backgroundColor={'#43766C'}
-      py={'6'}
-      borderRadius={'md'}
-    >
-      <Flex alignItems={'end'}>
-        <a href={'/product'}>
-          <Button backgroundColor={'#F8FAE5'}>Tambah produk</Button>
-        </a>
+    <Container maxW={'7xl'}>
+      <Flex justifyContent={'end'} py={'4'}>
+        <Link href={'/product'}>
+          <Button backgroundColor={'#B19470'} textTransform={'capitalize'}>
+            Tambah produk
+          </Button>
+        </Link>
       </Flex>
-      <TableContainer>
+      <TableContainer backgroundColor={'#43766C'} py={'6'} borderRadius={'md'}>
         <Table variant="simple" size={'md'}>
           <Thead>
             <Tr>
-              <Th color={'#B19470'}>Nama Produk</Th>
-              <Th color={'#B19470'}>Deskripsi</Th>
-              <Th color={'#B19470'}>Harga</Th>
-              <Th color={'#B19470'}>Jumlah</Th>
-              <Th color={'#B19470'}>Aksi</Th>
+              <Th color={'#B19470'} fontSize={'md'}>
+                Nama Produk
+              </Th>
+              <Th color={'#B19470'} fontSize={'md'}>
+                Deskripsi
+              </Th>
+              <Th color={'#B19470'} fontSize={'md'}>
+                Harga
+              </Th>
+              <Th color={'#B19470'} fontSize={'md'}>
+                Jumlah
+              </Th>
+              <Th color={'#B19470'} fontSize={'md'}>
+                Aksi
+              </Th>
             </Tr>
           </Thead>
           <Tbody>

@@ -18,7 +18,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ChakraProvider>
-          <Box bg="#43766C" fontSize={'xl'} w="100%" p={6} color="white">
+          <Box
+            bg="#43766C"
+            fontSize={'xl'}
+            w="100%"
+            p={6}
+            color="white"
+            mb={'20'}
+          >
             <Text as={'b'}>Product Manajemen</Text>
           </Box>
           {children}
