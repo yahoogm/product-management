@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation';
 import LoadingTable from '@/components/common/LoadingTable';
 import ErrorTable from '@/components/common/ErrorTable';
 import Link from 'next/link';
+import { tableHead } from '@/utils/table';
 
 export default function Home() {
   const toast = useToast();
@@ -70,21 +71,13 @@ export default function Home() {
         <Table variant="simple" size={'md'}>
           <Thead>
             <Tr>
-              <Th color={'#F8FAE5'} fontSize={'md'}>
-                Nama Produk
-              </Th>
-              <Th color={'#F8FAE5'} fontSize={'md'}>
-                Deskripsi
-              </Th>
-              <Th color={'#F8FAE5'} fontSize={'md'}>
-                Harga
-              </Th>
-              <Th color={'#F8FAE5'} fontSize={'md'}>
-                Jumlah
-              </Th>
-              <Th color={'#F8FAE5'} fontSize={'md'}>
-                Aksi
-              </Th>
+              {tableHead.map((th) => {
+                return (
+                  <Th color={'#F8FAE5'} fontSize={'md'} key={Math.random()}>
+                    {th}
+                  </Th>
+                );
+              })}
             </Tr>
           </Thead>
           <Tbody>

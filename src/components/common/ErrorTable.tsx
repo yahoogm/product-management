@@ -1,3 +1,4 @@
+import { tableHead } from '@/utils/table';
 import {
   Table,
   Thead,
@@ -27,21 +28,13 @@ const ErrorTable = () => {
         <Table variant="simple" size={'md'}>
           <Thead>
             <Tr>
-              <Th color={'#B19470'} fontSize={'md'}>
-                Nama Produk
-              </Th>
-              <Th color={'#B19470'} fontSize={'md'}>
-                Deskripsi
-              </Th>
-              <Th color={'#B19470'} fontSize={'md'}>
-                Harga
-              </Th>
-              <Th color={'#B19470'} fontSize={'md'}>
-                Jumlah
-              </Th>
-              <Th color={'#B19470'} fontSize={'md'}>
-                Aksi
-              </Th>
+              {tableHead.map((th) => {
+                return (
+                  <Th color={'#F8FAE5'} fontSize={'md'} key={Math.random()}>
+                    {th}
+                  </Th>
+                );
+              })}
             </Tr>
           </Thead>
           <Tbody>
