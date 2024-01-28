@@ -12,29 +12,16 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
 import { ProductData } from '@/utils/product';
 import { useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { HiBackward } from 'react-icons/hi2';
+import { productSchema } from '@/libs/validation';
 
 const Product = () => {
   const toast = useToast();
   const router = useRouter();
-
-  const addCommentSchema = Yup.object().shape({
-    nama_produk: Yup.string()
-      .min(3, 'Min 3 characters!')
-      .max(25, 'Max 25 characters!')
-      .required('nama produk tidak boleh kosong'),
-    keterangan: Yup.string()
-      .min(2, 'Min 2 characters!')
-      .max(250, 'Max 250 characters!')
-      .required('keterangan produk tidak boleh kosong'),
-    harga: Yup.number().required('harga produk tidak boleh kosong'),
-    jumlah: Yup.number().required('jumlah produk tidak boleh kosong'),
-  });
 
   const handleAddProduct = async ({
     nama_produk,
@@ -80,7 +67,7 @@ const Product = () => {
 
       formik.resetForm();
     },
-    validationSchema: addCommentSchema,
+    validationSchema: productSchema,
   });
   return (
     <Container>

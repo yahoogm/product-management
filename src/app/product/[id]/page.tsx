@@ -13,16 +13,21 @@ import {
 } from '@chakra-ui/react';
 
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
 import { ProductData } from '@/utils/product';
 import { useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { HiBackward } from 'react-icons/hi2';
+import { productSchema } from '@/libs/validation';
+import { useDetailProduct } from '@/hooks/useDetailProduct';
+import { useEffect } from 'react';
+import LoadingForm from '@/components/common/LoadingForm';
 
 const EditProduct = ({ params: { id } }: { params: { id: string } }) => {
   const toast = useToast();
   const router = useRouter();
+
+  const { data, error, loading } = useDetailProduct(id);
 
   const handleEditProduct = async ({
     nama_produk,
@@ -56,19 +61,6 @@ const EditProduct = ({ params: { id } }: { params: { id: string } }) => {
     }
   };
 
-  const addCommentSchema = Yup.object().shape({
-    nama_produk: Yup.string()
-      .min(3, 'Min 3 characters!')
-      .max(25, 'Max 25 characters!')
-      .required('Isi nama produk'),
-    keterangan: Yup.string()
-      .min(5, 'Min 5 characters!')
-      .max(250, 'Max 250 characters!')
-      .required('Isi keterangan produk'),
-    harga: Yup.number().required('Isi harga produk'),
-    jumlah: Yup.number().required('Isi jumlah produk'),
-  });
-
   const formik = useFormik({
     initialValues: {
       nama_produk: '',
@@ -81,8 +73,22 @@ const EditProduct = ({ params: { id } }: { params: { id: string } }) => {
 
       formik.resetForm();
     },
-    validationSchema: addCommentSchema,
+    validationSchema: productSchema,
   });
+
+  useEffect(() => {
+    if (data && !loading) {
+      formik.setValues({
+        nama_produk: data.nama_produk,
+        keterangan: data.keterangan,
+        harga: data.harga,
+        jumlah: data.jumlah,
+      });
+    }
+  }, [data, loading]);
+
+  if (error) return <div>error</div>;
+  if (loading) return <LoadingForm />;
 
   return (
     <Container>
