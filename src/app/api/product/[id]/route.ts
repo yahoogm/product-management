@@ -26,14 +26,13 @@ export async function PUT(req: NextRequest, { params }: { params: Params }) {
   }
 }
 
-export async function GET({ params }: { params: Params }) {
-  const { id } = params;
-  console.log(id);
+export async function GET(req: NextRequest, { params }: { params: Params }) {
   try {
     await connectToMongoDB();
+    const { id } = params;
     const response = await products.findOne({ _id: id });
     return NextResponse.json(
-      { response, message: 'Success get product' },
+      { message: 'Success get product', data: response },
       { status: 200 }
     );
   } catch (error) {
