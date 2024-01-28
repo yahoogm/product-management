@@ -3,32 +3,24 @@
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Input,
-  Center,
   Textarea,
   Button,
-  Grid,
-  GridItem,
+  Text,
+  Container,
+  Flex,
+  Box,
 } from '@chakra-ui/react';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { ProductData } from '@/utils/product';
 import { useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useFetch } from '@/hooks/useFetch';
 import { HiBackward } from 'react-icons/hi2';
 
 const EditProduct = ({ params: { id } }: { params: { id: string } }) => {
-  const { data, loading, error } = useFetch(
-    `${process.env.API_URL}/product/${id}`
-  );
-
-  const detailProduct: ProductData[] = data;
-  console.log(detailProduct);
-
   const toast = useToast();
   const router = useRouter();
 
@@ -93,66 +85,111 @@ const EditProduct = ({ params: { id } }: { params: { id: string } }) => {
   });
 
   return (
-    <>
-      <Button
-        onClick={() => router.back()}
-        backgroundColor={'darkblue'}
-        color={'white'}
-      >
-        <HiBackward size={30} /> Back
-      </Button>
-      <Center p={20}>
-        <form onSubmit={formik.handleSubmit}>
-          <FormControl w={'lg'}>
-            <GridItem>
-              <Grid>
+    <Container>
+      <Flex flexDirection={'column'} justifyItems={'center'} gap={'8'}>
+        <Button
+          onClick={() => router.back()}
+          colorScheme="blue"
+          color={'white'}
+          w={'32'}
+        >
+          <HiBackward size={30} /> Back
+        </Button>
+
+        <FormControl>
+          <form onSubmit={formik.handleSubmit}>
+            <Flex flexDirection={'column'} gap={'4'}>
+              <Box>
                 <FormLabel>Nama Produk</FormLabel>
                 <Input
                   type="text"
-                  placeholder=""
+                  placeholder="Isikan nama produk"
                   name="nama_produk"
                   id="nama_produk"
                   value={formik.values.nama_produk}
                   onChange={formik.handleChange}
                 />
-              </Grid>
+                {formik.touched.nama_produk && formik.errors.nama_produk ? (
+                  <Text
+                    fontSize={'small'}
+                    color={'red'}
+                    textTransform={'lowercase'}
+                  >
+                    {formik.errors.nama_produk}
+                  </Text>
+                ) : null}
+              </Box>
 
-              <GridItem>
+              <Box>
                 <FormLabel>Keterangan</FormLabel>
                 <Textarea
-                  placeholder="Here is a sample placeholder"
+                  placeholder="Isikan keterangan produk"
                   name="keterangan"
                   id="keterangan"
                   value={formik.values.keterangan}
                   onChange={formik.handleChange}
                 />
-              </GridItem>
+                {formik.touched.keterangan && formik.errors.keterangan ? (
+                  <Text
+                    fontSize={'small'}
+                    color={'red'}
+                    textTransform={'lowercase'}
+                  >
+                    {formik.errors.keterangan}
+                  </Text>
+                ) : null}
+              </Box>
 
-              <FormLabel>Harga</FormLabel>
-              <Input
-                type="number"
-                placeholder="Isikan nama produk"
-                name="harga"
-                id="harga"
-                value={formik.values.harga}
-                onChange={formik.handleChange}
-              />
-              <FormLabel>Jumlah</FormLabel>
-              <Input
-                type="number"
-                placeholder="Isikan nama produk"
-                name="jumlah"
-                id="jumlah"
-                value={formik.values.jumlah}
-                onChange={formik.handleChange}
-              />
-            </GridItem>
-          </FormControl>
+              <Box>
+                <FormLabel>Harga</FormLabel>
+                <Input
+                  type="number"
+                  placeholder="Isikan harga produk"
+                  name="harga"
+                  id="harga"
+                  value={formik.values.harga}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.harga && formik.errors.harga ? (
+                  <Text
+                    fontSize={'small'}
+                    color={'red'}
+                    textTransform={'lowercase'}
+                  >
+                    {formik.errors.harga}
+                  </Text>
+                ) : null}
+              </Box>
 
-          <Button type="submit">Submit</Button>
-        </form>
-      </Center>
-    </>
+              <Box>
+                <FormLabel>Jumlah</FormLabel>
+                <Input
+                  type="number"
+                  placeholder="Isikan jumlah produk"
+                  name="jumlah"
+                  id="jumlah"
+                  value={formik.values.jumlah}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.jumlah && formik.errors.jumlah ? (
+                  <Text
+                    fontSize={'small'}
+                    color={'red'}
+                    textTransform={'lowercase'}
+                  >
+                    {formik.errors.jumlah}
+                  </Text>
+                ) : null}
+              </Box>
+
+              <Button type="submit" colorScheme="green">
+                Ubah
+              </Button>
+            </Flex>
+          </form>
+        </FormControl>
+      </Flex>
+    </Container>
   );
 };
 

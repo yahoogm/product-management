@@ -87,7 +87,7 @@ const Product = () => {
       <Flex flexDirection={'column'} justifyItems={'center'} gap={'8'}>
         <Button
           onClick={() => router.back()}
-          backgroundColor={'#B19470'}
+          colorScheme="blue"
           color={'white'}
           w={'32'}
         >
@@ -180,7 +180,7 @@ const Product = () => {
                 ) : null}
               </Box>
 
-              <Button type="submit" backgroundColor={'#43766C'}>
+              <Button type="submit" colorScheme="green">
                 Submit
               </Button>
             </Flex>
