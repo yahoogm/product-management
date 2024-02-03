@@ -1,47 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Product Management
 
-## UI
+Product Management app based website create to handle the expenditure and entry of products in your shop :
 
-Landing
-<img src="./public/add.png"/>
+- Typescript
+- Next JS
+- Chakra UI
+- Formik
+- Yup
+- Axios
+- React Icons
+- Mongoose
+- Framer Motion
+- Body Parser
 
-Add
-<img src="./public/add_product.png"/>
+## Feature
 
-Edit
-<img src="./public//edit.png"/>
+- Home page
 
-## Getting Started
+  - User can see all of product list in table.
+  - User can click edit product & delete product.
+  - user can click add product.
 
-First, run the development server:
+- Add product page
+
+  - User can click button back for back to the home page.
+  - User required to input product name, detail product, price, and sum.
+
+- Edit product page
+  - User can edit product name, detail product, price, and sum
+
+## Installation
+
+- **Clone this repositories**
+
+  You need to clone this repositories to your local laptop/computer
+
+- **Download and install MongoDB Compass & MongoDB Shell**
+
+  MongoDB is using for the databases and for simple using database with MongoDB Compass. You can download [MongoDB Compass](https://www.mongodb.com/try/download/compass). MongoDB Shell is using for simple syntax in terminal for create database, use database, and many more. You can download [MongoDBShell](https://www.mongodb.com/try/download/shell). After you finish install all, the next step is making the database. You can follow this step:
+
+  - Open your MongoDB Compass software
+  - Hit the button connect for connecting your local to database
+  - Create database name is pijarcamp
+  - Create collection with name **products**
+
+After it use the package manager [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) to install Product Management.
+
+```bash
+yarn install
+```
+
+```bash
+npm run install
+```
+
+## Usage
+
+Use yarn dev script to run the project in your local computer and open [http://localhost:3000/](http://localhost:3000/) to view in your browser.
+
+```bash
+yarn dev
+
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-## Learn More
+Please make sure to update tests as appropriate.
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[MIT](https://choosealicense.com/licenses/mit/)
